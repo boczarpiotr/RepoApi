@@ -1,6 +1,7 @@
 package com.boczar.RepositoryAPI;
 
 import com.boczar.RepositoryAPI.Model.Branch;
+import com.boczar.RepositoryAPI.Model.Response;
 import com.boczar.RepositoryAPI.Util.BranchService;
 import com.boczar.RepositoryAPI.Util.RepoService;
 
@@ -27,8 +28,16 @@ public class newMain {
                 .flatMap(Stream::of)
                 .toList();
 
+        Response response = new Response();
+        response.setLogin("Peter");
+        List<Branch> listOfBranches = new ArrayList<>();
+
         for(Branch branch : finalList){
-            System.out.println(branch.getCommit().getSha());
+
+            listOfBranches.add(branch);
         }
+        response.setBranches(listOfBranches);
+
+        System.out.println(response); // raczej trzeba bedzie zmienic to co tutaj zwracamy. jak na razie zwracamy obiekt Response czyli branch name i wszystkie informacje o commicie
     }
 }

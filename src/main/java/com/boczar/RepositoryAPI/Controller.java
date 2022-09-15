@@ -1,6 +1,9 @@
 package com.boczar.RepositoryAPI;
 
 
+import com.boczar.RepositoryAPI.Model.Branch;
+import com.boczar.RepositoryAPI.Util.BranchService;
+import com.boczar.RepositoryAPI.Util.RepoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,6 +17,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 @RestController
@@ -30,6 +34,25 @@ public class Controller {
 //        return new String(response.readAllBytes());
 //
 //    }
+    @GetMapping("/getRes")
+    public String getResponse() throws IOException {
+        BranchService branchService = new BranchService();
+        RepoService repoService = new RepoService();
+        List<Branch[]> listOfLists = new ArrayList<>();
+
+        List<String> repos = repoService.getRepoNamesByUserName("peter");
+
+        for (String repo : repos) {
+            Branch[] branches = branchService.getBranchesByRepoName("peter", repo);
+            listOfLists.add(branches);
+
+        }
+        List<Branch> finalList = listOfLists.stream()
+                .flatMap(Stream::of)
+                .toList();
+
+        return finalList.get(0).getName(); //zwracam tylko piewsza nazwe brancha dla petera
+    }
 
     public static void main(String[] args) throws IOException {
         URL url = new URL("https://api.github.com/users/peter/repos");
