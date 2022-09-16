@@ -1,4 +1,4 @@
-package com.boczar.RepositoryAPI.Model;
+package com.boczar.RepositoryAPI.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -9,11 +9,12 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @EqualsAndHashCode
+@ToString
 
 public class Response {
     private String login;
-    private List<Branch> branches;
+    private List<SingleResponse> repositories;
+
 
 }

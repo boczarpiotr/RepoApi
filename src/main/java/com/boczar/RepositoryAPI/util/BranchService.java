@@ -1,13 +1,14 @@
-package com.boczar.RepositoryAPI.Util;
+package com.boczar.RepositoryAPI.util;
 
-import com.boczar.RepositoryAPI.Model.Branch;
+import com.boczar.RepositoryAPI.model.Branch;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+@Component
 public class BranchService {
 
     public Branch[] getBranchesByRepoName(String login, String repoName) throws IOException {
