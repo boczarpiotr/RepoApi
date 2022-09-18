@@ -9,5 +9,4 @@ public class RepositoryApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RepositoryApiApplication.class, args);
 	}
-//git comment
 }
